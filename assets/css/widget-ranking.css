@@ -1,0 +1,56 @@
+
+#aibvcs-ranking-widget {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+#aibvcs-ranking-widget .ranking-athlete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(209, 213, 219, 1);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    user-select: none;
+}
+
+#aibvcs-ranking-widget .ranking-athlete div {
+    width: 100%;
+    flex: 1;
+}
+
+#aibvcs-ranking-widget .ranking-athlete .person-name-surname {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0.5rem;
+    font-weight: bold;
+}
+
+#aibvcs-ranking-widget .ranking-athlete .position-circle {
+    padding: 0.4rem;
+}
+
+#aibvcs-ranking-widget .ranking-athlete .circle {
+    background-color: rgb(76, 145, 220);
+    border-radius: 9999px;
+    border: 3px solid rgb(253, 234, 175);
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 8px rgba(196, 196, 196, .7);
+}
+
+#aibvcs-ranking-widget .ranking-athlete .position-score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
