@@ -4,6 +4,8 @@
 namespace AIBVCS\Settings;
 
 use AIBVCS\Enum\EnumSectionStrings;
+use AIBVCS\Enum\EnumWidgetSettings;
+use AIBVCS\Enum\SettingsFields\EnumRankingFields;
 use AIBVCS\Settings\AbstractSettings;
 
 class SettingsManager
@@ -97,6 +99,24 @@ class SettingsManager
     public function getSlug()
     {
         return $this->pluginSlug;
+    }
+
+    /**
+     * Set defaults if they're not defined in Wordpress options.
+     * @param array $defaults
+     */
+    public function updateDefaults($defaults)
+    {
+        $rankingSettings = $defaults[EnumWidgetSettings::WIDGET_RANKINGS_SETTINGS];
+        $options = get_option(sprintf('%s_options', $this->getSlug()));
+
+        foreach (array_keys($rankingSettings) as $field)
+        {
+            if (!isset($options[$field]))
+            {
+                update_option($field, $rankingSettings[$field]);
+            }
+        }
     }
 
     /**

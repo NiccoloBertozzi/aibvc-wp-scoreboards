@@ -31,6 +31,7 @@ class Kernel
 
         # register settings
         $sm = new SettingsManager();
+        $sm->updateDefaults($widgetDefaults);
         $sm->addSetting(
             'rankings-widget', new RankingWidgetSettings($sm, $widgetDefaults[EnumWidgetSettings::WIDGET_RANKINGS_SETTINGS]));
         $sm->registerAll();
