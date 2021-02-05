@@ -4,7 +4,7 @@
  *
  * @package           AIBVCS
  * @author            5G
- * @copyright         2020 ittsrimini
+ * @copyright         2021 ittsrimini
  * @license           GPL-3.0-or-later
  *
  * @wordpress-plugin
