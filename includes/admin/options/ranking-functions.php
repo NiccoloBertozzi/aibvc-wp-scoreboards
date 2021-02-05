@@ -5,7 +5,7 @@ defined('ABSPATH') || die('Access denied.');
 # settings page
 function aibvcs_section_rankings_callback() {}
 
-function aibvcs_section_rankings_field_max_elements_callback($args)
+function aibvcs_section_rankings_field_ranking_max_elements_callback($args)
 {
     $options = get_option(sprintf('%s_options', AIBVCS_MODULE_SLUG));
     $value = esc_attr($args['data-value']);
@@ -19,7 +19,7 @@ function aibvcs_section_rankings_field_max_elements_callback($args)
     <?php
 }
 
-function aibvcs_section_rankings_field_show_scores_callback($args)
+function aibvcs_section_rankings_field_ranking_show_scores_callback($args)
 {
     $options = get_option(sprintf('%s_options', AIBVCS_MODULE_SLUG));
     $value = esc_attr(($args['data-value']));
@@ -33,7 +33,7 @@ function aibvcs_section_rankings_field_show_scores_callback($args)
     <?php
 }
 
-function aibvcs_section_rankings_field_show_women_callback($args)
+function aibvcs_section_rankings_field_ranking_show_women_callback($args)
 {
     $options = get_option(sprintf('%s_options', AIBVCS_MODULE_SLUG));
     $value = esc_attr(($args['data-value']));
@@ -47,7 +47,7 @@ function aibvcs_section_rankings_field_show_women_callback($args)
     <?php
 }
 
-function aibvcs_section_rankings_field_shorten_surnames_callback($args)
+function aibvcs_section_rankings_field_ranking_shorten_surnames_callback($args)
 {
     $options = get_option(sprintf('%s_options', AIBVCS_MODULE_SLUG));
     $value = esc_attr(($args['data-value']));

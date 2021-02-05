@@ -32,19 +32,19 @@ function aibvcs_options_page_html()
 function aibvcs_options_update($options)
 {
     # ranking settings
-    if (!isset($options[EnumRankingFields::FIELD_SHOW_SCORES])) {
+    if (!isset($options[EnumRankingFields::FIELD_SHOW_SCORES]) && $options[EnumRankingFields::FIELD_SHOW_SCORES] != true) {
         $options[EnumRankingFields::FIELD_SHOW_SCORES] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHOW_SCORES] = true;
     }
 
-    if (!isset($options[EnumRankingFields::FIELD_SHOW_WOMEN])) {
+    if (!isset($options[EnumRankingFields::FIELD_SHOW_WOMEN]) && $options[EnumRankingFields::FIELD_SHOW_WOMEN] != true) {
         $options[EnumRankingFields::FIELD_SHOW_WOMEN] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHOW_WOMEN] = true;
     }
 
-    if (!isset($options[EnumRankingFields::FIELD_SHORTEN_SURNAMES])) {
+    if (!isset($options[EnumRankingFields::FIELD_SHORTEN_SURNAMES]) && $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] != true) {
         $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] = true;
