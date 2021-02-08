@@ -9,12 +9,14 @@ use AIBVCS\Settings\RankingWidgetSettings;
 use AIBVCS\Settings\SettingsManager;
 use AIBVCS\Widget\RankingWidget;
 use AIBVCS\Widget\WidgetManager;
+use Exception;
 
 class Kernel
 {
 
     /**
      * Initialize the Module, set up the plugin.
+     * @throws Exception
      */
     public static function boot()
     {
@@ -27,6 +29,7 @@ class Kernel
         require __DIR__ . '/../includes/widget/rankings-widget-functions.php';
 
         # require module configuration
+        $widgetDefaults = [];
         require __DIR__ . '/../aibvc-config.php';
 
         # register settings
