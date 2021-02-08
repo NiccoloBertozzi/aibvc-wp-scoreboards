@@ -107,16 +107,20 @@ class SettingsManager
      */
     public function updateDefaults($defaults)
     {
-        $rankingSettings = $defaults[EnumWidgetSettings::WIDGET_RANKINGS_SETTINGS];
-        $options = get_option(sprintf('%s_options', $this->getSlug()));
+        $rankingSettings = $defaults[EnumRankingFields::FIELD_SHORTEN_SURNAMES];
 
-        foreach (array_keys($rankingSettings) as $field)
+        register_activation_hook(plugins_url() . '/aibvcs-wp-scoreboards/aibvc-wp-scoreboards.php', function () use ($defaults, $rankingSettings)
         {
-            if (!isset($options[$field]))
+            # update ranking options
+            foreach (array_keys($rankingSettings) as $field)
             {
-                update_option($field, $rankingSettings[$field]);
+                $option = get_option($field);
+                if (false == $option)
+                {
+                    update_option($field, $rankingSettings[$field]);
+                }
             }
-        }
+        });
     }
 
     /**

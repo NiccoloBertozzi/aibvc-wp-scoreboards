@@ -32,23 +32,28 @@ function aibvcs_options_page_html()
 function aibvcs_options_update($options)
 {
     # ranking settings
-    if (!isset($options[EnumRankingFields::FIELD_SHOW_SCORES]) && $options[EnumRankingFields::FIELD_SHOW_SCORES] != true) {
+    if (!isset($options[EnumRankingFields::FIELD_SHOW_SCORES]) || $options[EnumRankingFields::FIELD_SHOW_SCORES] != true) {
         $options[EnumRankingFields::FIELD_SHOW_SCORES] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHOW_SCORES] = true;
     }
 
-    if (!isset($options[EnumRankingFields::FIELD_SHOW_WOMEN]) && $options[EnumRankingFields::FIELD_SHOW_WOMEN] != true) {
+    if (!isset($options[EnumRankingFields::FIELD_SHOW_WOMEN]) || $options[EnumRankingFields::FIELD_SHOW_WOMEN] != true) {
         $options[EnumRankingFields::FIELD_SHOW_WOMEN] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHOW_WOMEN] = true;
     }
 
-    if (!isset($options[EnumRankingFields::FIELD_SHORTEN_SURNAMES]) && $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] != true) {
+    if (!isset($options[EnumRankingFields::FIELD_SHORTEN_SURNAMES]) || $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] != true) {
         $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] = false;
     } else {
         $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES] = true;
     }
+
+    update_option(EnumRankingFields::FIELD_MAX_ELEMENTS, $options[EnumRankingFields::FIELD_MAX_ELEMENTS]);
+    update_option(EnumRankingFields::FIELD_SHOW_SCORES, $options[EnumRankingFields::FIELD_SHOW_SCORES]);
+    update_option(EnumRankingFields::FIELD_SHOW_WOMEN, $options[EnumRankingFields::FIELD_SHOW_WOMEN]);
+    update_option(EnumRankingFields::FIELD_SHORTEN_SURNAMES, $options[EnumRankingFields::FIELD_SHORTEN_SURNAMES]);
 
     return $options;
 }
