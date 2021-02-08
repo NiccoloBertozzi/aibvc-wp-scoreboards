@@ -50,14 +50,21 @@ class RankingWidget extends \WP_Widget implements IWidget
      */
     public function widget($args, $instance)
     {
-        $rankingFetcher = new RankingFetcher(1, '/gestionale/GetClassifica/{S}');
-        $rankingData = $rankingFetcher->fetch([
-            'S' =>  'M' # sesso
-        ]);
+        # check if a transient already has the recent athletes.
+        $rankingData = get_transient(sprintf('%s_transient_rankingData', AIBVCS_MODULE_SLUG));
+        if (!$rankingData)
+        {
+            $rankingFetcher = new RankingFetcher(1, '/gestionale/GetClassifica/{S}');
+            $rankingData = $rankingFetcher->fetch([
+                'S' =>  'M' # sesso
+            ]);
 
-        if ($rankingData === false) {
-            echo '<p>Critical Error on Server-Side, Scoreboards couldn\'t fetch Ranking data from the APIs.</p>';
-            return;
+            if ($rankingData === false) {
+                echo '<p>Critical Error on Server-Side, Scoreboards couldn\'t fetch Ranking data from the APIs.</p>';
+                return;
+            }
+
+            set_transient(sprintf('%s_transient_rankingData', AIBVCS_MODULE_SLUG), $rankingData, DAY_IN_SECONDS);
         }
 
         wp_enqueue_style(
