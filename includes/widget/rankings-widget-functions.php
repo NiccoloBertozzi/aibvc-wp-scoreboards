@@ -8,7 +8,6 @@ defined('ABSPATH') || die('Access denied.');
 # widget html
 function aibvcs_ranking_widget_html_callback($athletes)
 {
-    # TODO: Output data based on settings.
     ?>
     <section id="<?php echo sprintf('%s-ranking-widget', AIBVCS_MODULE_SLUG); ?>">
         <h2 class="widget-title" style="margin-bottom: 1rem">Classifica</h2>
