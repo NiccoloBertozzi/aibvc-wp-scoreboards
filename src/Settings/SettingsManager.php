@@ -109,9 +109,20 @@ class SettingsManager
     public function updateDefaults($defaults)
     {
         $rankingSettings = $defaults[EnumWidgetSettings::WIDGET_RANKINGS_SETTINGS];
+        $tournamentSettings = $defaults[EnumWidgetSettings::WIDGET_TOURNAMENTS_SETTINGS];
 
         # update ranking options
         foreach ($rankingSettings as $fieldName => $fieldValue)
+        {
+            $option = get_option($fieldName);
+            if (false == $option || empty($option))
+            {
+                update_option($fieldName, $fieldValue);
+            }
+        }
+
+        # update tournaments options
+        foreach ($tournamentSettings as $fieldName => $fieldValue)
         {
             $option = get_option($fieldName);
             if (false == $option || empty($option))
@@ -140,6 +151,9 @@ class SettingsManager
                 {
                     case 'rankings':
                         $sectionTitle = EnumSectionStrings::SECTION_RANKINGS;
+                        break;
+                    case 'tournaments':
+                        $sectionTitle = EnumSectionStrings::SECTION_TOURNAMENTS;
                         break;
                 }
 

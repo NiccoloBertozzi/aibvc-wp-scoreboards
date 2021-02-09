@@ -109,13 +109,11 @@ abstract class AbstractSettings
 
     /**
      * Register specific options for a section.
-     * @return mixed
      */
     public abstract function hooks();
 
     /**
      * @param string $sectionId
-     * @return mixed
      */
     public abstract function fields($sectionId);
 }

@@ -5,7 +5,6 @@ namespace AIBVCS\Fetcher;
 
 
 use AIBVCS\Entity\TournamentEntity;
-use AIBVCS\Model\IModel;
 
 class TournamentFetcher extends AbstractFetcher
 {
@@ -19,9 +18,10 @@ class TournamentFetcher extends AbstractFetcher
         if (empty($date))
         {
             $date = (new \DateTime('tomorrow + 12 months'))->format('Y-m-d');
+            $params['date'] = $date;
         }
 
-        $url = $this->resolveParameters();
+        $url = $this->resolveParameters($params);
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_HTTPGET, 1);

@@ -11,7 +11,7 @@ class RankingWidgetSettings extends AbstractSettings
     private $titles = [
         EnumRankingFields::FIELD_MAX_ELEMENTS      => 'Numero massimo di elementi',
         EnumRankingFields::FIELD_SHOW_SCORES       => 'Mostra punteggi atleti',
-        EnumRankingFields::FIELD_SHOW_WOMEN        => 'Mostra anche le donne',
+        EnumRankingFields::FIELD_SHOW_WOMEN        => 'Mostra solo le donne',
         EnumRankingFields::FIELD_SHORTEN_SURNAMES  => 'Accorcia i cognomi',
     ];
 
@@ -24,13 +24,11 @@ class RankingWidgetSettings extends AbstractSettings
 
     /**
      * Register specific options for a section.
-     * @return mixed
      */
     public function hooks() {}
 
     /**
      * @param string $sectionId
-     * @return mixed
      */
     public function fields($sectionId)
     {
