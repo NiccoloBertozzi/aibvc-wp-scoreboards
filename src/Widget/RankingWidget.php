@@ -116,6 +116,7 @@ class RankingWidget extends \WP_Widget implements IWidget
     public function update($new_instance, $old_instance)
     {
         # the widget has settings on a custom page
+        return $new_instance;
     }
 
     /**

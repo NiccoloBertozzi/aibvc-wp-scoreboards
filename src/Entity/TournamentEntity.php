@@ -3,8 +3,7 @@
 
 namespace AIBVCS\Entity;
 
-
-use Cassandra\Date;
+use DateTime;
 
 class TournamentEntity implements IEntity
 {
@@ -54,17 +53,17 @@ class TournamentEntity implements IEntity
     private $prize;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $subscriptionsEndDate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $startDate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     private $endDate;
 
@@ -84,12 +83,12 @@ class TournamentEntity implements IEntity
      * @param float $subscriptionCost
      * @param float $victoryPoints
      * @param float $prize
-     * @param \DateTime $subscriptionsEndDate
-     * @param \DateTime $startDate
-     * @param \DateTime $endDate
+     * @param DateTime $subscriptionsEndDate
+     * @param DateTime $startDate
+     * @param DateTime $endDate
      * @param string $gender
      */
-    public function __construct($title, $type, $arbiterSupervisor, $tournamentSupervisor, $director, $formule, $subscriptionCost, $victoryPoints, $prize, \DateTime $subscriptionsEndDate, \DateTime $startDate, \DateTime $endDate, $gender)
+    public function __construct($title, $type, $arbiterSupervisor, $tournamentSupervisor, $director, $formule, $subscriptionCost, $victoryPoints, $prize, DateTime $subscriptionsEndDate, DateTime $startDate, DateTime $endDate, $gender)
     {
         $this->title = $title;
         $this->type = $type;
@@ -120,9 +119,9 @@ class TournamentEntity implements IEntity
         $subscriptionCost       = isset($data['quotaIscrizione']) ? floatval(esc_attr($data['quotaIscrizione'])) : 0.0;
         $victoryPoints          = isset($data['puntiVittoria']) ? floatval(esc_attr($data['puntiVittoria'])) : 0.0;
         $prize                  = isset($data['montepremi']) ? floatval(esc_attr($data['montepremi'])) : 0.0;
-        $subscriptionsEndDate   = isset($data['dataChiusuraIscrizioni']) ? new \DateTime(esc_attr($data['dataChiusuraIscrizioni'])) : (new \DateTime('now'));
-        $startDate              = isset($data['dataInizio']) ? new \DateTime(esc_attr($data['dataInizio'])) : (new \DateTime('now'));
-        $endDate                = isset($data['dataFine']) ? new \DateTime(esc_attr($data['dataFine'])) : (new \DateTime('now'));
+        $subscriptionsEndDate   = isset($data['dataChiusuraIscrizioni']) ? new DateTime(esc_attr($data['dataChiusuraIscrizioni'])) : (new DateTime('now'));
+        $startDate              = isset($data['dataInizio']) ? new DateTime(esc_attr($data['dataInizio'])) : (new DateTime('now'));
+        $endDate                = isset($data['dataFine']) ? new DateTime(esc_attr($data['dataFine'])) : (new DateTime('now'));
         $gender                 = isset($data['gender']) ? esc_attr($data['gender']) : '';
 
         $this->title = $title;
