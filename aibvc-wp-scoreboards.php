@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name:       AIBVC Scoreboards
  * Description:       Modulo per l'utilizzo di Widget che comunicano con le API AIBVC.
- * Version:           0.9.4
+ * Version:           0.9.7
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            5G
