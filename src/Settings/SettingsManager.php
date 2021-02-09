@@ -7,6 +7,7 @@ use AIBVCS\Enum\EnumSectionStrings;
 use AIBVCS\Enum\EnumWidgetSettings;
 use AIBVCS\Enum\SettingsFields\EnumRankingFields;
 use AIBVCS\Settings\AbstractSettings;
+use Exception;
 
 class SettingsManager
 {
@@ -61,17 +62,17 @@ class SettingsManager
      * Add a new Setting.
      * @param string $identifier
      * @param AbstractSettings $settings
-     * @throws \Exception
+     * @throws Exception
      */
     public function addSetting($identifier, AbstractSettings $settings)
     {
         if (!is_string($identifier))
-            throw new \Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, $identifier must be a string', 1);
+            throw new Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, $identifier must be a string', 1);
         if (!is_object($settings))
-            throw new \Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, $settings must be an object and implement AbstractSettings.', 1);
+            throw new Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, $settings must be an object and implement AbstractSettings.', 1);
 
         if (array_key_exists(strval($identifier), $this->settingsList))
-            throw new \Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, a setting with this $identifier already exists!', 1);
+            throw new Exception('addSetting($identifier, AbstractSettings $settings) in SettingsManager, a setting with this $identifier already exists!', 1);
 
         $this->settingsList[$identifier] = $settings;
     }
@@ -80,12 +81,12 @@ class SettingsManager
      * Get a setting by ID.
      * @param string $identifier
      * @return false|mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getSetting($identifier)
     {
         if (!is_string($identifier))
-            throw new \Exception('getSettings($identifier) in SettingsManager, $identifier must be a string', 1);
+            throw new Exception('getSettings($identifier) in SettingsManager, $identifier must be a string', 1);
 
         if (!empty($this->settingsList[$identifier]))
             return $this->settingsList[$identifier];
@@ -107,20 +108,17 @@ class SettingsManager
      */
     public function updateDefaults($defaults)
     {
-        $rankingSettings = $defaults[EnumRankingFields::FIELD_SHORTEN_SURNAMES];
+        $rankingSettings = $defaults[EnumWidgetSettings::WIDGET_RANKINGS_SETTINGS];
 
-        register_activation_hook(plugins_url() . '/aibvcs-wp-scoreboards/aibvc-wp-scoreboards.php', function () use ($defaults, $rankingSettings)
+        # update ranking options
+        foreach ($rankingSettings as $fieldName => $fieldValue)
         {
-            # update ranking options
-            foreach (array_keys($rankingSettings) as $field)
+            $option = get_option($fieldName);
+            if (false == $option || empty($option))
             {
-                $option = get_option($field);
-                if (false == $option)
-                {
-                    update_option($field, $rankingSettings[$field]);
-                }
+                update_option($fieldName, $fieldValue);
             }
-        });
+        }
     }
 
     /**

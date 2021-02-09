@@ -3,7 +3,9 @@
     "description": "Modulo per l'utilizzo di Widget che comunicano con le API AIBVC.",
     "type": "project",
     "license": "GPL3",
-    "require": {},
+    "require": {
+      "ext-curl": "*"
+    },
     "autoload": {
         "psr-4": {
             "AIBVCS\\": "src/"
