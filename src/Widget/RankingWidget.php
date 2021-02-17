@@ -90,9 +90,9 @@ class RankingWidget extends \WP_Widget implements IWidget
             }
         }
 
-        wp_enqueue_style(
-            sprintf('%s-widget-ranking', AIBVCS_MODULE_SLUG),
-            plugins_url() . '/aibvc-wp-scoreboards/assets/css/widget-ranking.css', [], false
+        wp_enqueue_script(
+            sprintf('%s-widgets-bundle', AIBVCS_MODULE_SLUG),
+            plugins_url() . '/aibvc-wp-scoreboards/assets/js/dist/aibvcs-widgets.bundle.js'
         );
 
         # fire hooks

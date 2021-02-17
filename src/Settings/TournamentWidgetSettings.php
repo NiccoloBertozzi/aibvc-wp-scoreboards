@@ -41,6 +41,6 @@ class TournamentWidgetSettings extends AbstractSettings
      */
     public function fields($sectionId)
     {
-        
+
     }
 }

@@ -14,41 +14,40 @@ function aibvcs_ranking_widget_html_callback($athletes)
     $max_elements = get_option(EnumRankingFields::FIELD_MAX_ELEMENTS);
     $show_scores = get_option(EnumRankingFields::FIELD_SHOW_SCORES);
     $shorten_surnames = get_option(EnumRankingFields::FIELD_SHORTEN_SURNAMES);
+    $rankingTableHash = rand(1, getrandmax());
 
-    ?>
-    <section id="<?php echo sprintf('%s-ranking-widget', AIBVCS_MODULE_SLUG); ?>">
-        <h2 class="widget-title" style="margin-bottom: 1rem">Classifica</h2>
-    <?php
-    $position = 1;
+    $data = [];
+    $pos = 1;
     foreach ($athletes as $athlete)
     {
-        if ($position > $max_elements)
+        if ($pos > $max_elements)
         {
-            // ¯\_(ツ)_/¯
             continue;
         }
-        if ($shorten_surnames)
-        {
-            $athlete->setSurname(sprintf('%s.', ($athlete->getSurname())[0]));
-        }
-        ?>
-            <div class="ranking-athlete">
-                <div class="position-circle">
-                    <div class="circle"><?php echo $position; ?></div>
-                </div>
-                <div class="person-name-surname">
-                    <p><?php echo sprintf('%s %s', $athlete->getName(), $athlete->getSurname()) ?></p>
-                </div>
-                <div class="position-score">
-                    <?php if ($show_scores): ?>
-                    <p><?php echo $athlete->getPoints(); ?></p>
-                    <?php endif; ?>
-                </div>
-            </div>
-        <?php
-        $position++;
+        $data[] = [
+            $pos,
+            $shorten_surnames ? sprintf('%s %s.', $athlete->getName(),($athlete->getSurname())[0]) : sprintf('%s %s', $athlete->getName(), $athlete->getSurname()),
+            $show_scores ? $athlete->getPoints() : 0
+        ];
+        if ($pos == 1) { $data[$pos-1][2] .= " 🥇"; }
+        if ($pos == 2) { $data[$pos-1][2] .= " 🥈"; }
+        if ($pos == 3) { $data[$pos-1][2] .= " 🥉"; }
+        $pos++;
     }
+
     ?>
+    <section id="<?php echo sprintf('%s-ranking-widget', AIBVCS_MODULE_SLUG); ?>" class="ranking-wg-section-<?php echo $rankingTableHash; ?>">
+        <h2 class="widget-title" style="margin-bottom: 1rem">Classifica</h2>
+        <table class="ranking-widget-table display ranking-wg-<?php echo $rankingTableHash; ?>">
+            <thead>
+                <th>Posizione</th>
+                <th>Nome</th>
+                <th>Punteggio</th>
+            </thead>
+            <tbody aibvcs-table-data="<?php echo esc_attr(json_encode($data)); ?>">
+            </tbody>
+        </table>
+        <style>.ranking-wg-section-<?php echo $rankingTableHash; ?> * {margin: .2em;}.ranking-wg-section-<?php echo $rankingTableHash; ?> .dataTables_filter label {display: flex;width: 100%;justify-content: center;align-items: center;}.ranking-wg-section-<?php echo $rankingTableHash; ?> .dataTables_filter label input[type="search"] {flex: 1;margin: 10px;}.ranking-wg-<?php echo $rankingTableHash ?> {background-color: #ffffff;border: 0.2px solid #535353;margin-top: 15px;}.ranking-wg-<?php echo $rankingTableHash ?> tr:nth-child(2n) {background-color: #f8f8f8;}.ranking-wg-<?php echo $rankingTableHash ?> .dataTables_paginate a {margin: 5px;}</style>
     </section>
     <?php
 }
