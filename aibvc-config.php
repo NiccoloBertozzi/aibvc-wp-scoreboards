@@ -6,7 +6,7 @@ use AIBVCS\Enum\SettingsFields\EnumRankingFields;
 use AIBVCS\Enum\SettingsFields\EnumTournamentFields;
 
 # General configuration
-define('AIBVCS_PLUGIN_VERSION', '0.9.7');
+define('AIBVCS_PLUGIN_VERSION', '1.0.0');
 define('AIBVCS_DEBUG_MODE', true);
 define('AIBVCS_MODULE_SLUG', 'aibvcs');
 
