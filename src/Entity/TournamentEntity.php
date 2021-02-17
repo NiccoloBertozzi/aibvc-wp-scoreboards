@@ -38,6 +38,11 @@ class TournamentEntity implements IEntity
     private $formule;
 
     /**
+     * @var string
+     */
+    private $facility;
+
+    /**
      * @var float
      */
     private $subscriptionCost;
@@ -88,7 +93,20 @@ class TournamentEntity implements IEntity
      * @param DateTime $endDate
      * @param string $gender
      */
-    public function __construct($title, $type, $arbiterSupervisor, $tournamentSupervisor, $director, $formule, $subscriptionCost, $victoryPoints, $prize, DateTime $subscriptionsEndDate, DateTime $startDate, DateTime $endDate, $gender)
+    public function __construct($title = '',
+                                $type = '',
+                                $arbiterSupervisor = '',
+                                $tournamentSupervisor = '',
+                                $director = '',
+                                $formule = '',
+                                $facility = '',
+                                $subscriptionCost = 0.0,
+                                $victoryPoints = 0.0,
+                                $prize = 0.0,
+                                DateTime $subscriptionsEndDate = null,
+                                DateTime $startDate = null,
+                                DateTime $endDate = null,
+                                $gender = '')
     {
         $this->title = $title;
         $this->type = $type;
@@ -96,6 +114,7 @@ class TournamentEntity implements IEntity
         $this->tournamentSupervisor = $tournamentSupervisor;
         $this->director = $director;
         $this->formule = $formule;
+        $this->facility = $facility;
         $this->subscriptionCost = $subscriptionCost;
         $this->victoryPoints = $victoryPoints;
         $this->prize = $prize;
@@ -116,6 +135,7 @@ class TournamentEntity implements IEntity
         $tournamentSupervisor   = isset($data['supervisoreArbitrale']) ? esc_attr($data['supervisoreArbitrale']) : '';
         $director               = isset($data['direttoreCompetizione']) ? esc_attr($data['direttoreCompetizione']) : '';
         $formule                = isset($data['formula']) ? esc_attr($data['formula']) : '';
+        $facility               = isset($data['nomeImpianto']) ? esc_attr($data['nomeImpianto']) : '';
         $subscriptionCost       = isset($data['quotaIscrizione']) ? floatval(esc_attr($data['quotaIscrizione'])) : 0.0;
         $victoryPoints          = isset($data['puntiVittoria']) ? floatval(esc_attr($data['puntiVittoria'])) : 0.0;
         $prize                  = isset($data['montepremi']) ? floatval(esc_attr($data['montepremi'])) : 0.0;
@@ -130,6 +150,7 @@ class TournamentEntity implements IEntity
         $this->tournamentSupervisor = $tournamentSupervisor;
         $this->director = $director;
         $this->formule = $formule;
+        $this->facility = $facility;
         $this->subscriptionCost = $subscriptionCost;
         $this->victoryPoints = $victoryPoints;
         $this->prize = $prize;
@@ -137,6 +158,8 @@ class TournamentEntity implements IEntity
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->gender = $gender;
+
+        return $this;
     }
 
     /**
@@ -244,6 +267,24 @@ class TournamentEntity implements IEntity
     public function setFormule($formule)
     {
         $this->formule = $formule;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacility()
+    {
+        return $this->facility;
+    }
+
+    /**
+     * @param mixed $facility
+     * @return TournamentEntity
+     */
+    public function setFacility($facility)
+    {
+        $this->facility = $facility;
         return $this;
     }
 
