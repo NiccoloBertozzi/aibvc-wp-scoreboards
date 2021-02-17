@@ -5,6 +5,7 @@
 ### Changelog:
 | Data | Descrizione |
 | :--- | :---------- |
+| 17 Feb 2021 | Primo rilascio, versione 1.0.0 |
 | 5 Feb 2021 | Modifiche stile (più compatto) |
 | 2 Feb 2021 | Versione 0.9.0-b1 » Nuova implementazione, release b1 |
 | 30 Gen 2021 | __Azzeramento progetto__ (L'implementazione non era abbastanza modulare) |
