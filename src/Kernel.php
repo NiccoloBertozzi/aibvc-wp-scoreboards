@@ -9,6 +9,7 @@ use AIBVCS\Settings\RankingWidgetSettings;
 use AIBVCS\Settings\SettingsManager;
 use AIBVCS\Settings\TournamentWidgetSettings;
 use AIBVCS\Widget\RankingWidget;
+use AIBVCS\Widget\TournamentWidget;
 use AIBVCS\Widget\WidgetManager;
 use Exception;
 
@@ -29,6 +30,7 @@ class Kernel
         require __DIR__ . '/../includes/admin/options/ranking-functions.php';
         require __DIR__ . '/../includes/admin/options/tournament-functions.php';
         require __DIR__ . '/../includes/widget/rankings-widget-functions.php';
+        require __DIR__ . '/../includes/widget/tournament-widget-functions.php';
 
         # require module configuration
         $widgetDefaults = [];
@@ -46,6 +48,7 @@ class Kernel
         # add widgets
         $wm = new WidgetManager($sm);
         $wm->addWidget('ranking', RankingWidget::class);
+        $wm->addWidget('tournament', TournamentWidget::class);
         $wm->initWidgets();
     }
 }
