@@ -1,0 +1,24 @@
+{
+  "name": "aibvc-wp-scoreboards",
+  "version": "1.0.0",
+  "description": "Modulo per l'utilizzo di Widget che comunicano con le API AIBVC.",
+  "main": "\"\"",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiccoloBertozzi/aibvc-wp-scoreboards.git"
+  },
+  "author": "",
+  "license": "See LICENSE",
+  "bugs": {
+    "url": "https://github.com/NiccoloBertozzi/aibvc-wp-scoreboards/issues"
+  },
+  "homepage": "https://github.com/NiccoloBertozzi/aibvc-wp-scoreboards#readme",
+  "dependencies": {
+    "datatables": "^1.10.18",
+    "datatables.net-dt": "^1.10.23",
+    "jquery": "^3.5.1"
+  }
+}
